@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  </head>
+  <body> 
+    <h1 >covid-19 tracker</h1>
+    <img src="cov1.png" class="cov1">
+    <img src="cov1.png" class="cov2">
+    <br>
+    <br>
+    <br><br><br><br>
+    <h2 ><div class="st">
+      State wise reports
+    </div></h2>
+    <br>
+    <canvas id="mychart"></canvas>
+    <script  >
+      let mychart=document.getElementById("mychart").getContext("2d");
+      let barchart=new Chart(mychart,{
+      type:'bar',
+      data:{
+        labels:['Andaman and Nicobar Islands',
+'Andhra Pradesh',
+'Arunachal Pradesh',
+'Assam',
+'Bihar',
+'Chandigarh',
+'Chhattisgarh',
+'Delhi',
+'Goa',
+'Gujarat',
+'Haryana',
+'Himachal Pradesh',
+'Jammu and Kashmir',
+'Jharkhand',
+'Karnataka',
+'Kerala',
+'Ladakh',
+'Madhya Pradesh',
+'Maharashtra',
+'Manipur',
+'Meghalaya',
+'Mizoram',
+'Odisha',
+'Puducherry',
+'Punjab',
+'Rajasthan',
+'Tamil Nadu',
+'Telangana',
+'Tripura',
+'Uttarakhand',
+'Uttar Pradesh',
+'West Bengal'],
+        datasets:[{
+          backgroundColor: 'rgb(255, 77, 77)',
+          borderColor: 'rgb(255, 77, 77)',
+          label:'corona cases',
+          data: [27,955,1,36,223,27,36,2514,7,2815,272,40,454,57,474,450,20,1,852,6817,2,12,1,94,7,298,2034,1755,984,2,
+          48,48,1621,571]
+        }
+        ]
+      }
+        ,options:{}});
+    </script>
+    <div class="center">
+      <h4>24,506 total corona cases reported.</h4><br><br><br><br><br>
+      <h2 ><div class="st">
+      Daily New Corona cases
+      </div></h2>
+      <br><br>
+      <canvas id="linear" ></canvas>
+  <script >
+    var lin=document.getElementById("linear").getContext("2d");
+    let lineChart=new Chart(lin,{
+      type: 'line',
+      data:{
+        labels:["27Feb","28Feb","29Feb","1Mar","4Mar","7Mar","10Mar","13Mar","16Mar","19Mar","22Mar","25Mar","28Mar","31Mar","3Apr","6Apr","9Apr","12Apr","15Apr","18Apr","21Apr","24Apr","27Apr","30Apr"],
+        datasets:[{
+          backgroundColor: 'rgba(102, 179, 255,.5)',
+          borderColor: 'rgb(51, 153, 255)',
+          data:[0,0,0,3,28,58,40,88,114,170,365,602,879,1239,4267,5863,7794,10440,13381,15460,18171,24447,27890]
+          ,label:'Day wise Infected cases'
+      }]
+      },
+      options:{}
+    }
+
+  );
+
+
+  </script>     <br>
+    </div>
+    <div class="cluster">
+      <img src="cov1.png" class="c1">
+      <img src="cov1.png" class="c2">
+      <img src="cov1.png" class="c3">
+    </div>
+    <br><br><br><br>
+    <h2 ><div class="st">
+    Daily New Deaths in India
+    </div></h2>
+    <br><br>
+      <canvas id="d" ></canvas>
+    <script >
+      var d=document.getElementById("d").getContext("2d");
+      let bar=new Chart(d,{
+      type:'bar',
+      data:{
+        labels:["27Feb","28Feb","29Feb","1Mar","4Mar","7Mar","10Mar","13Mar","16Mar","19Mar","22Mar","26Mar","28Mar","30Mar","1Apr","2Apr","3Apr","4Apr","5Apr","6Apr","7Apr","8Apr","9Apr","10Apr","11Apr","12Aapr","13Apr","14Apr","15Apr","16Apr","17Apr","18Aapr","19Apr","21Apr","22Apr","23Apr","24Apr","25Apr","26Apr"],
+        datasets:[{
+          backgroundColor: 'rgb(115, 115, 115)',
+          borderColor: 'rgb(115, 115, 115)',
+          label:'corona Deaths',
+          data: [0,0,0,0,0,0,0,0,0,0,0,8,0,5,23,14,14,13,19,18,24,18,49,22,39,43,27,35,29,26,38,35,38,33,53,36,40,59,45,56]
+        }
+        ]
+      }
+        ,options:{}});
+
+
+    </script>
+      <a href="index.html"> <button type="button" name="button" class="fixedB">Back</button></a>
+      <br><br><br><br><br><br>
+  </body>
+</html>
