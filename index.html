@@ -1,54 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
-    <title></title>
+    <title>cTracker</title><link rel="icon" href="images\i.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <div class="intro">
-      <h1>Covid-19 tracker</h1><br>
-      <div class="navbar">
-        <ul>
-          <li><a href="#">home</a></li>
-          <li><a href="stats.html">Grapic Charts</a></li>
-          <li><a href="map.php">Map check</a></li>
-        </ul>
-      </div>
-      <br><br>
-
-      Protect yourself and others around you by knowing the facts and taking appropriate precautions. Follow advice provided by your local public health agency.
-      To prevent the spread of COVID-19:<br><br>
-      <div class="grd">
-        <div class="gridc">
-          <img src="images.png" alt=""> <br>
-          Clean your hands often. Use soap and water, or an alcohol-based hand rub.
-
-        </div>
-        <div class="gridc">
-          <img src="sd.png" alt=""><br>
-          Maintain a safe distance from anyone who is coughing or sneezing.
-
-        </div>
-        <div class="gridc">
-          <img src="a.jpg" alt=""><br>
-           Don’t touch your eyes, nose or mouth.
-
-        </div>
-        <div class="gridc">
-          <img src="c.jpg" alt=""><br>
-          Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.
-        </div>
-        <div class="gridc">
-            <img src="h.png" alt=""><br>
-          Stay home if you feel unwell
-        </div>
-        <div class="gridc">
-          <img src="as.png" alt=""><br>
-           If you have a fever, a cough, and difficulty breathing, seek medical attention. Call in advance
-        </div>
+    <div id="container">
+      <h1>
+        Corona tracker </h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">Corona tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="chart.html">national stats</a>
+        <a class="nav-item nav-link" href="global.html">global Stats</a>
       </div>
     </div>
+  </nav>
 
+  <div class="imageBack">
+    <div class="imageBackText">
+      Get your live covid 19 live <br><br> &nbsp&nbsp&nbspstats and charts <a href="chart.html">here</a>.
+    </div>
+  </div>
+  <div class="gap">
+
+    <div class="row">
+      <div class="col-sm-4"><img src="images/h.png" alt=""><br><br>Clean your hands often. Use soap and water, or an alcohol-based hand rub. <br></div>
+      <div class="col-sm-4"><img src="images/s.png" alt=""><br><br>Maintain a safe distance from anyone who is coughing or sneezing. <br></div>
+      <div class="col-sm-4"><img src="images/3.png" alt=""><br><br>Don’t touch your eyes, nose or mouth.After you  sneeze.<br> </div></div></div> <br>
+      <div class="vid">
+      <video autoplay muted loop id="myVideo">
+        <source src="images\Covid-19 .mp4" type="video/mp4">
+      </video>
+    </div>
+      <div class="gap">
+    <div class="row">
+      <div class="col-sm-4"><img src="images/4.png" alt=""><br>If you have a fever, a cough, and difficulty breathing, seek medical attention. Call in advance <br></div>
+      <div class="col-sm-4"><img src="images/5.png" alt=""><br>Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.<br> </div>
+      <div class="col-sm-4"><img src="images/i.jpg" alt=""><br><br> Follow the directions of your local health authority.<br></div>
+    </div>
+  </div>
+    </div><br><br>
+
+ <!-- Site footer -->
+ <!-- Footer -->
+<footer class="page-footer font-small teal pt-4">
+
+  <!-- Footer Text -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold">About</h5>
+        <p>The Covid 19 Tracker application comes with an interactive COVID-19 risk management window which clearly states the information that is to be followed to manage the COVID-19 spread.
+
+        It uses Corona virus API to provide the user with the live status such as the number of people affected day wise in Nationand the globe.
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3"id="mov1">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mb-md-0 mb-3"  id="mov2">
+
+        <!-- Content -->
+        <h5 class="text-uppercase font-weight-bold">Content</h5>
+        <p>HTML <br>CSS <br>JavaScript</p>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Text -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="index.html"> Archer.Inc</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

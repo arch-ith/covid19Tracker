@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>cTracker</title><link rel="icon" href="images\i.jpg">
+  </head>
+  <body>
+    <h1>
+      Corona tracker </h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.html">Corona tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="chart.html">national stats</a>
+      <a class="nav-item nav-link" href="global.html">global Stats</a>
+    </div>
+  </div>
+</nav><h6><div id="updatetimestamp"></div></h6>
+<h6><span id="updatetimestamp"></span></h6><br><br>
+    <h2>daily confirmed</h2>
+    <canvas id="daily-confirmed"></canvas>
+    <h2>daily recovered</h2>
+    <canvas id="daily-recovered" ></canvas>
+      <h2>Sate wise infected</h2>
+    <canvas id="state-infected" ></canvas><br>
+      <h2>Sate wise recovered</h2>
+    <canvas id="state-recovered" ></canvas>
+      <h2>Sate wise deaths</h2>
+    <canvas id="state-deaths" ></canvas>
+    <script type="text/javascript">
+    /////////////////////daily-confirmed///////////////////////
+    var dailyconfirmed=[];
+    var dailyrecovered=[],date=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+            var sid=1;
+            $.each(data.cases_time_series,function(key,value){
+              dailyconfirmed.push(value.dailyconfirmed);
+              date.push(value.date);
+              sid++;
+            })
+            var ctx = document.getElementById('daily-confirmed').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: ['daily confirmed'],
+                        backgroundColor: '#ff9980',
+                        borderColor: '#e62e00',
+                        data: dailyconfirmed
+                    }]
+                },
+                options :{
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontSize: 20
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontSize: 10
+            }
+        }]
+    }
+    }
+            });
+        }
+      });
+    </script>
+    <script type="text/javascript">
+    ////////////////////////daily-recovered/////////////////////
+    var dailyrecovered=[],date=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+            $.each(data.cases_time_series,function(key,value){
+              dailyrecovered.push(value.dailyrecovered);
+            })
+            var ctx = document.getElementById('daily-recovered').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: ['daily recovered'],
+                        backgroundColor: '#b3d9ff',
+                        borderColor: '#4da6ff',
+                        data: dailyrecovered
+                    }]
+                },
+                options :{
+              scales: {
+                      yAxes: [{
+                              ticks: {
+                                  fontSize: 20
+                              }
+                          }],
+                          xAxes: [{
+                              ticks: {
+                                  fontSize: 10
+                              }
+                          }]
+                    }
+              }
+            });
+        }
+      });
+    </script>
+    <script type="text/javascript">
+    //////////////////pie-chart///////////////
+    var totalConfirmed;
+    var totald;
+    var totalr,state=[],active=[],confirmed=[],deaths=[],recovered=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+            var sid=1;
+            $.each(data.statewise,function(key,value){
+              state.push(value.state);
+              confirmed.push(value.confirmed);
+              sid++;
+            })
+            state.shift();
+            confirmed.shift();
+
+            console.log(state.length+" "+recovered.length);
+            var ctx = document.getElementById('state-infected').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: state,
+                    datasets: [{
+                        label: "confirmed",
+                        backgroundColor: '#ff9980',
+                        data: confirmed,
+                         borderWidth: 2
+
+                    }]
+                },
+                options :{
+    scales: {
+        yAxes: [{
+            ticks: {
+                fontSize: 20
+            }
+        }],
+        xAxes: [{
+            ticks: {
+                fontSize: 10
+            }
+        }]
+    }
+}
+            });
+        }
+      });
+    </script>
+
+    <script type="text/javascript">
+    ////////////////state-recovered/////////////////////
+    var recovered=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+            var sid=1;
+            $.each(data.statewise,function(key,value){
+              recovered.push(value.recovered);
+              sid++;
+            })
+            console.log(state.length+" "+recovered.length);
+            var ctx = document.getElementById('state-recovered').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: state,
+                    datasets: [{
+                        label: "recovered",
+                        backgroundColor: '#b3d9ff',
+                        data: recovered
+
+                    }]
+                },
+                options :{
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontSize: 20
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontSize: 10
+                                }
+                            }]
+                      }
+              }
+          });
+        }
+      });
+    </script>
+    <script type="text/javascript">
+    ////////////////state-recovered/////////////////////
+    var recovered=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+            var sid=1;
+            $.each(data.statewise,function(key,value){
+              deaths.push(value.deaths);
+              sid++;
+            })
+            var ctx = document.getElementById('state-deaths').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: state,
+                    datasets: [{
+                        label: "deaths",
+                        backgroundColor: '#ffc299',
+                        data: deaths
+
+                    }]
+                },
+                options :{
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontSize: 20
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontSize: 10
+                                }
+                            }]
+                      }
+              }
+          });
+        }
+      });
+    </script>
+    updatetimestamp
+    <script type="text/javascript">
+    var updatetimestamp=[];
+      $.ajax({
+        url : "https://api.covid19india.org/data.json",
+        dataType : "JSON",
+        success : function(data){
+          $.each(data.tested,function(key,value){
+            updatetimestamp.push(value.updatetimestamp)
+          })
+          var l=updatetimestamp.length;
+          document.getElementById("updatetimestamp").innerHTML="update time stamp : "+updatetimestamp[l-1];
+        }
+      })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
