@@ -120,7 +120,7 @@
       });
     </script>
     <script type="text/javascript">
-    //////////////////pie-chart///////////////
+    //////////////////state wise infected///////////////
     var totalConfirmed;
     var totald;
     var totalr,state=[],active=[],confirmed=[],deaths=[],recovered=[];
@@ -182,6 +182,7 @@
               recovered.push(value.recovered);
               sid++;
             })
+            recovered.shift();
             console.log(state.length+" "+recovered.length);
             var ctx = document.getElementById('state-recovered').getContext('2d');
             var chart = new Chart(ctx, {
@@ -214,7 +215,7 @@
       });
     </script>
     <script type="text/javascript">
-    ////////////////state-recovered/////////////////////
+    ////////////////state-deaths/////////////////////
     var recovered=[];
       $.ajax({
         url : "https://api.covid19india.org/data.json",
@@ -224,7 +225,7 @@
             $.each(data.statewise,function(key,value){
               deaths.push(value.deaths);
               sid++;
-            })
+            })deaths.shift();
             var ctx = document.getElementById('state-deaths').getContext('2d');
             var chart = new Chart(ctx, {
                 type: 'bar',
