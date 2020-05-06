@@ -225,7 +225,8 @@
             $.each(data.statewise,function(key,value){
               deaths.push(value.deaths);
               sid++;
-            })deaths.shift();
+            })
+            deaths.shift();
             var ctx = document.getElementById('state-deaths').getContext('2d');
             var chart = new Chart(ctx, {
                 type: 'bar',
