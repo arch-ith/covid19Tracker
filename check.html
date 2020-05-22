@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title></title>
+  </head>
+  <body>
+    <html>
+  <body>  <h1>
+      Corona tracker </h1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.html">Corona tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="chart.html">National Chart</a>
+      <a class="nav-item nav-link" href="global.html">Global Chart</a>
+      <a class="nav-item nav-link" href="nubers.html">National Stats</a>
+      <a class="nav-item nav-link" href="check.html">Check city</a>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<h4>  &nbsp &nbsp &nbspEnter your city</h4 ><br>
+    <select id="select">
+       </select>
+           <button type="button" id="clck" ></button>
+       <br><br><br><br><br>
+       <select id="select2">
+          </select>
+      <button type="button" id="clck2" ></button>
+    <br>
+    <div id="disp">
+    </div>
+
+      <script type="text/javascript">
+        var state=[];
+        var city=[];
+        var cityno=[];
+        var index=[];
+        var x;
+        var rs,rc;
+        var i=0,j=0;
+
+        document.getElementById("select2").style.visibility = "hidden";
+        document.getElementById("clck2").style.visibility = "hidden";
+        $.ajax({
+          url : "https://api.covid19india.org/state_district_wise.json",
+          dataType : "JSON",
+          success : function(data){
+            $.each(data,function(key,value){
+                state[i]=key;i++;
+            })
+                state.shift();
+            var select = document.getElementById("select"),
+                     arr = state;
+             for(var j= 0; j < arr.length;j++)
+             {
+                 var option = document.createElement("OPTION"),
+                     txt = document.createTextNode(arr[j]);
+                 option.appendChild(txt);
+                 option.setAttribute("value",arr[j]);
+                 select.insertBefore(option,select.lastChild);
+             }
+               document.getElementById("clck").onclick=function(){
+                  document.getElementById("select2").style.visibility = "visible";
+                  document.getElementById("clck2").style.visibility = "visible";
+                   x=select.value;
+                   rs=x;
+                   var a = state.indexOf(x);
+                   var ind=0;
+                   for (var jj= index[a]; jj < index[a+1]; jj++) {
+                     cityno.push(city[jj]);
+                   }
+                   var select2 = document.getElementById("select2"),
+                            arr2 = cityno;
+                            console.log(arr2);
+                    for(var j= 0; j < arr2.length;j++)
+                    {
+                        var option = document.createElement("OPTION"),
+                            txt = document.createTextNode(arr2[j]);
+                        option.appendChild(txt);
+                        option.setAttribute("value",arr2[j]);
+                        select2.insertBefore(option,select2.lastChild);
+                    }
+                      document.getElementById("clck2").onclick=function(){
+                        x=select2.value;
+                        rc=x;
+                        console.log(rs+""+rc);
+                        var hasTag = function(){
+                          if (data.has(rs)) {
+                            return  true;
+                          }
+                        };
+                        console.log(data[rs].districtData.hasOwnProperty(rc));
+                        var active_cases=(data[rs].districtData[rc].active);
+                        document.getElementById("disp").innerHTML="The no of active cases in "+rc+" is "+active_cases;
+                      }
+
+             }
+              i=0;j=0;
+            index[j]=i;j++;
+            $.each(data["Andaman and Nicobar Islands"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Andhra Pradesh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Arunachal Pradesh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+          index[j]=i;j++;
+            $.each(data["Assam"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Bihar"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Chandigarh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Chhattisgarh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Delhi"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Dadra and Nagar Haveli and Daman and Diu"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Goa"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Gujarat"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Himachal Pradesh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Haryana"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Jharkhand"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Jammu and Kashmir"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+
+            $.each(data["Karnataka"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Kerala"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Ladakh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            $.each(data["Lakshadweep"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Maharashtra"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Meghalaya"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Manipur"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Madhya Pradesh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Mizoram"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Nagaland"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Odisha"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Rajasthan"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Punjab"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Puducherry"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Sikkim"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Telangana"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Tamil Nadu"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Tripura"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Uttar Pradesh"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["Uttarakhand"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            index[j]=i;j++;
+            $.each(data["West Bengal"].districtData,function(key,value){
+              city[i]=key;
+              i++;
+            })
+            }
+          });
+
+      </script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

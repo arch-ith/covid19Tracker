@@ -1,3 +1,28 @@
+#clck,#clck2{
+  border-radius: 50%;
+  width:40px;
+  height:40px;
+  position: relative;
+  top:10px;
+  background-image:url(images/ser.png);
+  background-position: center;
+  background-size: contain;
+  background-color: white;
+  border: 0px;
+}
+#disp{
+  padding: 5%;
+  color: red;
+}
+#select,#select2{
+  padding-left: 40px;
+  width:40%;
+  font-size: 1.1em;
+  border: 0px;
+}
+#clck:hover{
+background-color: #d9d9d9;
+}
 h1{
   font-family: monospace;
   font-weight: 900;
@@ -101,4 +126,11 @@ canvas#daily-recovered{
 footer{
   color: white;
   background-color:  #262626;
+}
+
+th, td {
+  padding: 15px;
+}
+table{
+  margin: 7%;
 }
