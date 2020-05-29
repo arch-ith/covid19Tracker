@@ -36,11 +36,17 @@
       <h2>Sate wise recovered</h2>
     <canvas id="state-recovered" ></canvas>
       <h2>Sate wise deaths</h2>
-    <canvas id="state-deaths" ></canvas>
-
+    <canvas id="state-deaths" ></canvas> 
+  <canvas id="state-talley" ></canvas>
 
     <script type="text/javascript">
     /////////////////////daily-confirmed///////////////////////
+
+
+
+
+
+    //////////////////////
     var dailyconfirmed=[];
     var dailyrecovered=[],date=[];
       $.ajax({
@@ -260,6 +266,7 @@
           });
         }
       });
+
     </script>
     <script type="text/javascript">
     var updatetimestamp=[];
@@ -274,6 +281,7 @@
           document.getElementById("updatetimestamp").innerHTML="update time stamp : "+updatetimestamp[l-1];
         }
       })
+
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -38,7 +38,18 @@
     <br>
     <div id="disp">
     </div>
+    <h4> &nbsp &nbsp &nbspClick the button to get your coordinates.</h4>
 
+    <button class="button" onclick="getLocation()"></button>
+    <div class="common">
+      <p id="demo"></p>
+    </div>
+    <h4> &nbsp &nbsp &nbspClick the button to get nearest containment zone.</h4>
+    <button class="button2" onclick="getDistance()"></button>
+    <div class="common"><div id="area">
+
+    </div></div>
+    <br><br><br><br><br><br>
       <script type="text/javascript">
         var state=[];
         var city=[];
@@ -288,6 +299,56 @@
             }
           });
 
+      </script>
+      <script>
+        var area=[],lat=[],lon=[];
+        area=["Horamavu","Pulikeshi Nagar","Shivaji Nagar","KR Market","Rajarajeshwari Nagar","Bapuji Nagar","Sudhama Nagar","Padarayana Pura","Hoodi","Begur","Hosahalli"];
+        lat=[13.03263,12.99704,12.98565,12.96563,12.99232,12.95678,12.95916,12.96524,12.99349,12.87876,12.8773];
+        lon=[ 77.65833,77.6144, 77.60569 , 77.57698, 77.53102, 77.53972 , 77.58682, 77.55404, 77.71587, 77.63766, 77.53112];
+        var x = document.getElementById("demo");
+        console.log(area.length+" "+lat.length);
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        var lat11 ,lon11 ;
+        function showPosition(position) {lon11=position.coords.longitude;lat11=position.coords.latitude;
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        }
+        function getDistance() {
+              var least=1000;var index2 =0;
+              for (var i =0; i < area.length; i++) {
+                    var least2=getDistanceFromLatLonInKm(lat11,lon11,lat[i],lon[i]);
+                    console.log("Distance"+least2+"area :"+area[i])
+                      if (least2<least) {
+                        least=least2;
+                        index2=i;
+                      }
+              }
+              console.log(area[index2]+" Distance"+least);
+              document.getElementById("area").innerHTML="Closest containment zone is "+area[index2]+"<br>which is "+least+" km away ";
+        }
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+          var R = 6371; // Radius of the earth in km
+          var dLat = deg2rad(lat2-lat1);  // deg2rad below
+          var dLon = deg2rad(lon2-lon1);
+          var a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          var d = R * c; // Distance in km
+          return d;
+        }
+
+        function deg2rad(deg) {
+          return deg * (Math.PI/180)
+        }
       </script>
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
